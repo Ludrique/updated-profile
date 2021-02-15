@@ -4,13 +4,336 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="css/style.css">
+    <style>
+        * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "PT Sans", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.container {
+  padding: 0 100px 0 100px;
+}
+
+nav ul,
+.main-info-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+body {
+  background-color: #252627;
+}
+
+header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 20px 0;
+}
+
+.navbar {
+  background-color: #181818;
+}
+
+header h1,
+header a,
+.text p,
+.about h1,
+.skills h1,
+.work h1,
+.contact h1 {
+  color: #707070;
+}
+
+li {
+  list-style: none;
+  margin-left: 30px;
+}
+
+a {
+  text-decoration: none;
+  font-size: .9rem;
+  text-transform: uppercase;
+  position: relative;
+  top: 50%;
+  bottom: 50%;
+  transform: translateY(-50%);
+}
+
+.circular {
+  border-radius: 100%;
+}
+
+.main-info-section {
+  height: calc(100vh - 81.6px);
+}
+
+.text {
+  margin-top: 120px;
+}
+.text h1 {
+  color: #fff;
+  font-size: 3rem;
+  cursor: context-menu;
+}
+
+.text span {
+  display: inline-block;
+}
+
+span:hover {
+  color: #48CFAD;
+  transition: all .5s;
+}
+
+span.name {
+  color: #ED5565;
+}
+
+span.m-left {
+  margin-left: -10px;
+}
+
+.text p {
+  letter-spacing: 3px;
+  word-spacing: 10px;
+  font-size: .8rem;
+}
+
+.text a {
+  padding: 12px 25px;
+  background-color: none;
+  border: 3px solid #ED5565;
+  color: #ED5565;
+  font-size: .8rem;
+  letter-spacing: 2px;
+  position: relative;
+  top: 80px;
+  overflow: hidden;
+  transition: .5s;
+  display: inline-block;
+}
+
+.text a:hover {
+  color: #fff;
+}
+
+.text a::before {
+  content: '';
+  background-color: #ED5565;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 0%;
+  z-index: -1;
+  transition: .5s;
+}
+
+.text a:hover::before {
+  height: 100%;
+}
+
+.profile-image img {
+  width: 450px;
+  margin-top: 50px;
+}
+
+.about {
+  height: 100vh;
+  margin-top: 100px;
+}
+
+.about h1,
+.work h1 {
+  font-size: 10rem;
+  z-index: 0;
+  opacity: .1;
+}
+
+.about-me-info {
+  max-width: 900px;
+  background-color: #252627;
+  box-shadow: 0 0 1.2rem rgba(0,0,0,.25);
+  padding: 50px;
+  position: relative;
+  top: -70px;
+  left: 50%;
+  right: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+.about-me-info p {
+  font-size: 1.3rem;
+  color: #BEBEBE;
+}
+
+.about-me-info p:nth-child(2),
+.about-me-info p:last-child {
+  margin-top: 30px;
+}
+
+.about img {
+  width: 300px;
+  position: relative;
+  top: -300px;
+  left: calc(100% - 100px);
+  right: calc(100% - 100px);
+  transform: translateX(calc(-100% + 100px));
+}
+.skills {
+  height: 100vh;
+}
+
+.skills h1, 
+.contact h1 {
+  text-align: center;
+  font-size: 10rem;
+  opacity: .1;
+}
+
+.skills-info {
+  font-size: 1.4rem;
+  color: #BEBEBE;
+  max-width: 800px;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.html {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+  margin-bottom: 40px;
+}
+
+div[class^='tag-'] {
+  clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 0% 50%, 0% 0%);
+  width: 120px;
+  height: 30px;
+  background-color: #1785A7;
+  margin-right: 30px;
+}
+
+div[class^='tag-'] p {
+  color: #fff;
+  text-align: left;
+  padding-left: 10px;
+  font-size: 1.1rem;
+  padding-top: 3px;
+}
+
+.progressbar {
+  position: relative;
+  width: 400px;
+  height: 20px;
+  border: 2px solid #48CFAD;
+  border-radius: 20px;
+  margin-top: 7px;
+}
+
+div[class^='bar-'] {
+  position: absolute;
+  background-color: #48CFAD;
+  height: 10px;
+  border-radius: 20px;
+  margin: 2.7px;
+}
+
+.bar-html,
+.bar-css,
+.bar-javascript,
+.bar-python {
+  width: calc(0 - 6px);
+}
+
+div[class^='category-'] {
+  margin-top: 50px;
+  display: grid;
+  grid-template-columns: repeat(autofill, minmax(350px, 1fr));
+  grid-gap: 20px;
+}
+
+button.active {
+  color: #fff;
+}
+
+div.hideCategory {
+  display: none;
+}
+
+.showCategory {
+  display: block;
+}
+
+.contact {
+  margin-top: 50px;
+}
+
+form input,
+form textarea {
+  display: block;
+  width: 500px;
+  padding: 20px;
+  background-color: #252627;
+  border: 3px solid #707070;
+  margin: 20px 0;
+  outline: none;
+  font-size: 1.2rem;
+  color: #fff;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  transform: translateX(-50%);
+}
+
+form input:last-child {
+  width: 150px;
+  background-color: #ED5565;
+  border: none;
+  cursor: pointer;
+}
+
+footer hr {
+  border: 2px solid #707070;
+  margin-top: 80px;
+}
+
+footer p,
+#copyright {
+  text-align: left;
+  color: #707070;
+  font-size: 1.2rem;
+  padding: 30px 0;
+}
+
+progress {
+  height: 15px;
+  width: 50%;
+  color: #aaa;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+}
+    </style>
+    <!-- <link rel="stylesheet" href="css/style.css"> -->
 </head>
 <body>
     <div class="container navbar">
       <header>
           <div class="lgo">
-            <h1>Mashudu</h1>
+            <h1>The Shudus</h1>
           </div>
           <nav>
               <ul>
@@ -53,10 +376,10 @@
                 <span class="m-left"></span>
             </h1>
             <p>Python / JavaScript / Networking / Security</p>
-            <a href="#contact">contact me</a>
+            <a href="mailto:mashudulmbedzi@gmail.com">contact me</a>
         </div>
         <div class="profile-image">
-            <img class="circular" src="img/image.jpg" alt="">
+            <img class="circular" src="image.jpg" alt="">
         </div>
     </div>
         <div class="container about" id="about">
@@ -67,7 +390,7 @@
                     Molestiae vel velit reiciendis quasi incidunt, eligendi dignissimos ea deleniti nam expedita saepe, facere eum modi. Beatae quis illum facilis cupiditate porro.
                 </p>
             </div>
-            <img src="img/dotted-shape.png" alt="">
+            <img src="dotted-shape.png" alt="">
         </div>
         <div class="container skills" id="skills">
             <h1>skills</h1>
@@ -79,45 +402,45 @@
                 <div class="tag-html">
                     <p>Python</p>
                 </div>
-                <div class="progress-bar">
+                <progress max="10" value="5" class="progress-bar">
                     <div class="bar-html"></div>
-                </div>
+                </progress>
             </div>
             <div class="html">
                 <div class="tag-css">
                     <p>Networking</p>
                 </div>
-                <div class="progress-bar">
+                <progress max="10" value="7" class="progress-bar">
                     <div class="bar-css"></div>
-                </div>
+                </progress>
             </div>
             <div class="html">
                 <div class="tag-javascript">
                     <p>JavaScript</p>
                 </div>
-                <div class="progress-bar">
+                <progress max="10" value="5" class="progress-bar">
                     <div class="bar-javacript"></div>
-                </div>
+                </progress>
             </div>
             <div class="html">
                 <div class="tag-python">
                     <p>Security</p>
                 </div>
-                <div class="progress-bar">
+                <progress max="10" value="8" class="progress-bar">
                     <div class="bar-python"></div>
-                </div>
+                </progress>
             </div>
         </div>
-        <div class="container contact" id="contact">
+        <!-- <div class="container contact" id="contact">
             <h1>Contact</h1>
             <form action="">
                 <input type="text" name="name" placeholder="Full Name">
                 <input type="email" placeholder="Email">
-                <!-- <input type="email" placeholder="PortfolioPersonemail@example.com" disabled> -->
-                <textarea name="message" id="" cols="30" rows="10" placeholder="Message"></textarea>
+                 <input type="email" placeholder="PortfolioPersonemail@example.com" disabled> -->
+                <!-- <textarea name="message" id="" cols="30" rows="10" placeholder="Message"></textarea>
                 <input type="submit">
             </form>
-        </div>
+        </div> --> 
     <footer>
         <div>
             &copy;
@@ -129,11 +452,11 @@
             <p>Mashudu Mbedzi</p>
           
     </footer>
-    
+<!--     
     <script src="js/ScrollMagic.min.js"></script>
     <script src="js/animation.gsap.min.js"></script>
     <script src="js/TimelineLite.min.js"></script>
     <script src="js/TweenMax.min.js"></script>
-    <script src="js/script.js"></script>
+    <script src="js/script.js"></script> -->
 </body>
 </html>
